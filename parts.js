@@ -1,25 +1,25 @@
 $(function () {
-    $(".common_header").load("/yomi-city/parts/header.html");
+    $(".common_header").load("/parts/header.html");
 });
 
 $(function () {
-    $(".common_hero_header").load("/yomi-city/parts/hero-header2.html");
+    $(".common_hero_header").load("/parts/hero-header2.html");
 });
 
 $(function () {
-    $(".common_information").load("/yomi-city/parts/information.html");
+    $(".common_information").load("/parts/information.html");
 });
 
 $(function () {
-    $(".common_menu2").load("/yomi-city/parts/menu2.html");
+    $(".common_menu2").load("/parts/menu2.html");
 });
 
 $(function () {
-    $(".common_side").load("/yomi-city/parts/side.html");
+    $(".common_side").load("/parts/side.html");
 });
 
 $(function () {
-    $(".common_related_sites").load("/yomi-city/parts/related-sites.html");
+    $(".common_related_sites").load("/parts/related-sites.html");
 });
 
 $(function () {
