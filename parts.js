@@ -23,9 +23,9 @@ $(function () {
 });
 
 $(function () {
-    $(".common_AD").load("/yomi-city/parts/AD.html");
+    $(".common_AD").load("/parts/AD.html");
 });
 
 $(function () {
-    $(".common_footer").load("/yomi-city/parts/footer.html");
+    $(".common_footer").load("/parts/footer.html");
 });
