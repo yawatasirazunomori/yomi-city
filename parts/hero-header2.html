@@ -1,0 +1,162 @@
+<style>
+  /* --- CSS: デザインとアニメーションの設定 --- */
+  
+ .slideshow-wrapper {
+    width: 100%;       /* 画面幅に合わせて広がるように変更 */
+    max-width: 100%;  /* 大きくなりすぎないよう最大幅を設定（お好みで変更可） */
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 20 / 7; /* ★ここで 20:7 の比率を指定 */
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .slide {
+    flex: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  /* --- 追加: ボタンのデザイン --- */
+  .btn-group {
+    position: absolute; /* ★画像の上に浮かせるための設定 */
+    bottom: 20px;       /* ★枠の下端から20pxの位置に配置 */
+    left: 92%;          /* ★左から50%の位置に配置 */
+    transform: translateX(-50%); /* ★ボタン群の幅の半分だけ左にずらして「ど真ん中」にする */
+    display: flex;
+    gap: 10px;
+    z-index: 10;        /* ★画像(0)より大きい数字にして手前に表示 */
+  }
+
+  .button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6); /* ★背景を半透明の黒に変更 */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* うっすら白い枠線を追加 */
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* ホバー時の色変化を滑らかに */
+  }
+
+  .button:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* マウスを乗せたら黒を濃くする */
+  }
+</style>
+</head>
+<body>
+
+  <!-- --- HTML: 画像とボタンの配置 --- -->
+  <div class="slideshow-wrapper">
+    <div class="slideshow-container">
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner1.png" class="slide active"></a>
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner2.png" class="slide active"></a>
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner3.png" class="slide active"></a>
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner4.png" class="slide active"></a>
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner5.png" class="slide active"></a>
+        <a href="javascript:void(0);"><img src="/image/info-banner/info-banner6.png" class="slide active"></a>
+        <!-- 操作ボタン -->
+        <div class="btn-group">
+            <button class="button" id="prevBtn">⬅</button>
+            <button class="button" id="playPauseBtn">⏸</button>
+            <button class="button" id="nextBtn">⮕</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- --- JavaScript: 画像切り替えとボタン操作の仕組み --- -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    
+    let currentIndex = 0;
+    let slideInterval; // タイマーを保存するための変数
+    let isPlaying = true; // 現在再生中かどうかを判定するフラグ
+
+    // 指定した番号の画像を表示する関数
+    function showSlide(index) {
+      slides[currentIndex].classList.remove('active');
+      
+      // indexがマイナスになった場合や、最後の画像を超えた場合の計算
+      currentIndex = (index + slides.length) % slides.length;
+      
+      slides[currentIndex].classList.add('active');
+    }
+
+    // 次の画像へ進む関数
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    // 前の画像へ戻る関数
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    // 自動再生を開始する関数
+    function startSlideshow() {
+      slideInterval = setInterval(nextSlide, 10000);
+    }
+
+    // 自動再生を停止する関数
+    function stopSlideshow() {
+      clearInterval(slideInterval);
+    }
+
+    // --- ボタンがクリックされたときの処理 ---
+
+    // 「次へ」ボタン
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      // 再生中の場合は、タイマーをリセットして不自然な連続切り替えを防ぐ
+      if (isPlaying) {
+        stopSlideshow();
+        startSlideshow();
+      }
+    });
+
+    // 「前へ」ボタン
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      if (isPlaying) {
+        stopSlideshow();
+        startSlideshow();
+      }
+    });
+
+    // 「一時停止 / 再開」ボタン
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        // 再生中なら停止して、ボタンの文字を「▶」にする
+        stopSlideshow();
+        playPauseBtn.textContent = '▶';
+      } else {
+        // 停止中なら再生して、ボタンの文字を「⏸」にする
+        startSlideshow();
+        playPauseBtn.textContent = '⏸';
+      }
+      isPlaying = !isPlaying; // 再生状態を反転させる
+    });
+
+    // 最初は自動再生をスタートしておく
+    startSlideshow();
+  </script>
+
+</body>

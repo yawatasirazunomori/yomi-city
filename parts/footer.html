@@ -1,0 +1,84 @@
+<style>
+    footer{
+        flex:100%;
+        font-size: 0.75em;
+        border-top:2px solid #9012ff;
+        background: #ffeafd;
+    }
+
+    .footer-container {
+        flex:100%;
+    }
+    /*
+        .footer-top {
+        background-image:url(/yomi-city/icon/footer-rogo.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        padding:150px;
+    }
+    */
+    .footer-bottom {
+        flex:100%;
+        font-size: 0.75em;
+        color: black;
+        /*background-color: rgb(109, 109, 109);*/
+        padding: 0.5rem;
+        text-align: center;
+    }
+    .footer-content {
+        /* 背景画像の設定 */
+        background-image: 
+        linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%),
+        url("/image/footer/sanzu-river2.png");
+        background-size: cover;       /* ★変更: 背景画像を枠いっぱいに綺麗に広げる */
+        background-position: center;  /* ★追加: 画像の中央を基準に表示（端が見切れてもバランスが良くなる） */
+        background-repeat: no-repeat; /* ★追加: 画像の繰り返し（タイリング）を防ぐ */
+
+        /* サイズと比率の設定 */
+        width: 100%;                  /* ★変更: 横幅を画面に合わせる */
+        aspect-ratio: 1024 / 254;     /* ★変更: 4/1ではなく実際のピクセル数を指定すると最も正確な比率になります */
+        overflow: hidden;
+        
+        /* ※ object-fit: cover; は削除しました */
+        position: relative;
+    }
+
+    .footer-item {
+        position:absolute;
+        top:20%;
+        left: 20%;
+    }
+
+    .footer-icon {
+        background-image: url("/image/icon/yomi-city-only-logo.png");
+        background-position: left 0px center;
+        background-repeat: no-repeat;
+        background-size: 50px 50px;
+        font-size: 20px;
+        padding: 16px 16px 16px 50px;
+    }
+</style>
+
+<div class="footer-content">
+    <div class="footer-item">
+        <div class="footer-icon">黄泉市役所</div>
+        法人番号: 20000XXXXXXXX<br>
+        〒: 700-9999 黄泉市黄泉中央1-1
+    </div>
+</div>
+<footer>
+
+    <div class="footer-container">
+        
+        <div class="footer-top">
+            <div class="menu-container">
+                <div class="f-menu"><a href="/yomi-city/website.html">このサイトについて</a></div>
+                <div class="f-menu"><a href="/yomi-city/site-map.html">サイトマップ</a></div>
+                <div class="f-menu"><a href="/yomi-city/system.html">組織情報・業務紹介</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">このサイトは架空の自治体であり、実在の団体または個人とは一切関係ありません。<br>
+        © 2026 黄泉市 , 八幡不知森
+        </div>
+    </div>
+</footer>

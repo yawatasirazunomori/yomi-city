@@ -1,0 +1,73 @@
+<div class="header">
+  <div class="header-container">
+    <div class="header-logo2">
+      <a href="/yomi-city/index.html"><image src="/image/icon/yomi-city-logo.png"></image></a>
+    </div>
+    <div>
+      <form action="https://google.com" method="get" target="_blank">
+        <input type="hidden" name="sitesearch" value="http://www083.pbcloud.cs.priv.teu.ac.jp/">
+        <input type="text" name="q" placeholder="サイト内を検索..." required>
+        <button type="submit">検索</button>
+      </form>
+    </div>
+  </div>
+  <div class="menu-container">
+    <div class="h-menu">
+      <div onclick="toggleMenu('open1')">
+        <a href="javascript:void(0);">くらし・手続き</a>
+      </div>
+    </div>
+    <div class="h-menu">
+      <div onclick="toggleMenu('open2')">
+        <a href="javascript:void(0);">子育て・教育</a>
+      </div>
+    </div>
+    <div class="h-menu">
+      <div onclick="toggleMenu('open3')">
+        <a href="javascript:void(0);">健康・福祉・医療</a>
+      </div>
+    </div>
+    <div class="h-menu">
+      <div onclick="toggleMenu('open4')">
+        <a href="javascript:void(0);">ごみ・環境</a>
+      </div>
+    </div>
+    <div class="h-menu">
+      <div onclick="toggleMenu('open5')">
+        <a href="javascript:void(0);">施設・窓口案内</a>
+      </div>
+    </div>
+    <div class="h-menu">
+      <div onclick="toggleMenu('open6')">
+        <a href="javascript:void(0);">市政情報</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // 対象となるメニューの中身のIDをリストアップしておきます
+  const menuIds = ['open1', 'open2', 'open3', 'open4', 'open5', 'open6'];
+
+  function toggleMenu(targetId) {
+    // 1. まず、クリックされたメニュー「以外」をすべて閉じる
+    menuIds.forEach(id => {
+      if (id !== targetId) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.style.display = 'none';
+        }
+      }
+    });
+
+    // 2. クリックされたメニューの開閉を切り替える
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      // 現在が none（または空）なら flex に、そうでないなら none にする
+      if (targetElement.style.display === 'none' || targetElement.style.display === '') {
+        targetElement.style.display = 'flex';
+      } else {
+        targetElement.style.display = 'none';
+      }
+    }
+  }
+</script>

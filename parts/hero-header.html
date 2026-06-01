@@ -1,0 +1,64 @@
+<style>
+  /* --- CSS: デザインとアニメーションの設定 --- */
+  
+  /* 画像を表示する枠のサイズ設定 */
+  .slideshow-container {
+    flex:100%;
+    position: relative;
+    width: 1024px;  /* お好みの幅に */
+    height: 357px; /* お好みの高さに */
+    max-width: 100%; /* スマホ対応 */
+    margin: 0 auto;  /* 中央寄せ */
+    overflow: hidden; /* 枠からはみ出た部分を隠す */
+  }
+
+  /* 個別の画像の設定 */
+  .slide {
+    margin-top:10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 枠に合わせて画像をトリミング */
+    opacity: 0; /* 初期状態は透明にして見えなくする */
+    transition: opacity 1s ease-in-out; /* 1秒かけてフワッと切り替える（フェード） */
+  }
+
+  /* 表示中の画像（activeクラスがついた時）の設定 */
+  .slide.active {
+    opacity: 1; /* 透明度を1（完全に表示）にする */
+  }
+</style>
+</head>
+<body>
+
+  <!-- --- HTML: 画像の配置 --- -->
+  <div class="slideshow-container">
+    <!-- src="〇〇" の部分を、表示させたい画像のURLやパスに変更してください -->
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner1.png" class="slide active"></a>
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner2.png" class="slide active"></a>
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner3.png" class="slide active"></a>
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner4.png" class="slide active"></a>
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner5.png" class="slide active"></a>
+    <a href="javascript:void(0);"><img src="/icon/info-banner/info-banner6.png" class="slide active"></a>
+  </div>
+
+  <!-- --- JavaScript: 画像を切り替える仕組み --- -->
+  <script>
+    // '.slide' というクラスがついた画像をすべて取得
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0; // 現在表示している画像の番号（最初は0番目）
+
+    // 指定した時間ごとに処理を繰り返す関数
+    setInterval(() => {
+      // 1. 今表示されている画像の 'active' クラスを外す（透明になる）
+      slides[currentIndex].classList.remove('active');
+
+      // 2. 次の画像の番号を計算する（最後の画像の次は最初の画像に戻る）
+      currentIndex = (currentIndex + 1) % slides.length;
+
+      // 3. 次の画像に 'active' クラスをつける（表示される）
+      slides[currentIndex].classList.add('active');
+    }, 5000); // 5000ミリ秒（＝5秒）ごとに切り替え
+  </script>
